@@ -15,6 +15,10 @@ public class FormProducto extends javax.swing.JFrame {
      */
     public FormProducto() {
         initComponents();
+        txtId.setEditable(false);
+        
+        CProductos objetoProducto = new CProductos();
+        objetoProducto.MostrarProductos(tbTotalProductos);
     }
 
     /**
@@ -57,6 +61,11 @@ public class FormProducto extends javax.swing.JFrame {
 
             }
         ));
+        tbTotalProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbTotalProductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbTotalProductos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -91,6 +100,11 @@ public class FormProducto extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
 
@@ -117,10 +131,9 @@ public class FormProducto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtCant, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                        .addComponent(txtNombre)
-                        .addComponent(txtId)))
+                    .addComponent(txtCant, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
@@ -178,7 +191,19 @@ public class FormProducto extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         CProductos objetoProducto = new CProductos();
         objetoProducto.InsertarProducto(txtNombre, txtCant, txtPrecio);
+        objetoProducto.MostrarProductos(tbTotalProductos);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        CProductos objetoProducto = new CProductos();
+        objetoProducto.ModificarProducto(txtId,txtNombre, txtCant, txtPrecio);
+        objetoProducto.MostrarProductos(tbTotalProductos);
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void tbTotalProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTotalProductosMouseClicked
+        CProductos objetoProducto = new CProductos();
+        objetoProducto.SeleccionarProducto(tbTotalProductos, txtId, txtNombre, txtCant, txtPrecio);
+    }//GEN-LAST:event_tbTotalProductosMouseClicked
 
     /**
      * @param args the command line arguments

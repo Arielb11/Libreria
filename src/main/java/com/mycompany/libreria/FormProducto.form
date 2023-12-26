@@ -94,6 +94,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbTotalProductosMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -131,11 +134,9 @@
                   <EmptySpace pref="20" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="txtPrecio" pref="106" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtCant" pref="106" max="32767" attributes="0"/>
-                          <Component id="txtNombre" max="32767" attributes="0"/>
-                          <Component id="txtId" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="txtCant" alignment="0" pref="106" max="32767" attributes="0"/>
+                      <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtId" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
@@ -209,6 +210,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnEliminar">
           <Properties>

@@ -61,11 +61,6 @@ public class FormProducto extends javax.swing.JFrame {
 
             }
         ));
-        tbTotalProductos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbTotalProductosMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tbTotalProductos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -100,13 +95,13 @@ public class FormProducto extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Precio");
 
@@ -204,6 +199,12 @@ public class FormProducto extends javax.swing.JFrame {
         CProductos objetoProducto = new CProductos();
         objetoProducto.SeleccionarProducto(tbTotalProductos, txtId, txtNombre, txtCant, txtPrecio);
     }//GEN-LAST:event_tbTotalProductosMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        CProductos objetoProducto = new CProductos();
+        objetoProducto.EliminarProducto(txtId);
+        objetoProducto.MostrarProductos(tbTotalProductos);
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments

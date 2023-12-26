@@ -4,6 +4,7 @@ package com.mycompany.libreria;
 import javax.swing.*;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -51,16 +52,12 @@ public class CProductos {
     
     public void InsertarProducto(JTextField paramNombre, JTextField paramCant, JTextField paramPrecio) {
         setNombreProducto(paramNombre.getText());
-        String cantCadena = paramCant.getText(); //Acordarse que el getText() solo trae String
-        int cantInt = Integer.parseInt(cantCadena);
-        setCant(cantInt);
-        String precioCadena = paramPrecio.getText();
-        float precioFloat = Float.parseFloat(precioCadena);
-        setPrecio(precioFloat);
+        setCant(Integer.parseInt(paramCant.getText()));
+        setPrecio(Float.parseFloat(paramPrecio.getText()));
         
         CConexion objetoConexion = new CConexion();
         
-        String consulta = "insert into Productos (nombres, cant, precio) values (?,?,?)";
+        String consulta = "INSERT INTO Productos (nombres, cant, precio) VALUES (?,?,?)";
         
         try {
             CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
@@ -132,38 +129,52 @@ public class CProductos {
         }    
     }
     
-    public void ModificarProducto (JTextField paramId,JTextField paramNombre, JTextField paramCant, JTextField paramPrecio) {
+    public void ModificarProducto (JTextField paramId, JTextField paramNombre, JTextField paramCant, JTextField paramPrecio) {
         setCodigo(Integer.parseInt(paramId.getText()));
         setNombreProducto(paramNombre.getText());
-        String cantCadena = paramCant.getText();
-        int cantInt = Integer.parseInt(cantCadena);
-        setCant(cantInt);
-        String precioCadena = paramPrecio.getText();
-        float precioFloat = Float.parseFloat(precioCadena);
-        setPrecio(precioFloat);   
+        setCant(Integer.parseInt(paramCant.getText()));
+        setPrecio(Float.parseFloat(paramPrecio.getText()));   
         
         CConexion objetoConexion = new CConexion();
         
-        String consulta = "update productos set productos.nombre = ?, productos.cant = ?, productos.precio = ? where productos.id = ?;";
+        String consulta = "UPDATE productos SET productos.nombres = ?, productos.cant = ?, productos.precio = ? WHERE productos.id = ?;";
         
         try {
             CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
             
-            cs.setInt(1, getCodigo());
-            cs.setString(2, getNombreProducto());
-            cs.setInt(3, getCant());
-            cs.setFloat(4, getPrecio());
+            cs.setString(1, getNombreProducto());
+            cs.setInt(2, getCant());
+            cs.setFloat(3, getPrecio());
+            cs.setInt(4, getCodigo());
             
             cs.execute();
             
             JOptionPane.showMessageDialog(null, "Se Actualizo correctamente el producto");
 
             
-        } catch (Exception e) {
-            
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se pudo actualizar el producto error:"+ e.toString());
+        }
+    }
+    
+    public void EliminarProducto(JTextField paramCodigo){
+        
+        setCodigo(Integer.parseInt(paramCodigo.getText()));
+        
+        CConexion objetoConexion = new CConexion();
+        
+        String consulta = "DELETE FROM productos WHERE productos.id = ?;";
+        
+        try {
+            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
+            cs.setInt(1, getCodigo());
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se Elimino correctamente el producto");
 
             
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto, error:"+ e.toString());
+
         }
     }
 }

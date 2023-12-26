@@ -241,12 +241,16 @@ public class FormProducto extends javax.swing.JFrame {
 
     private void btnCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaActionPerformed
         panelCarga.setVisible(true);
+        
     }//GEN-LAST:event_btnCargaActionPerformed
-
+    public void esconderLista (){
+        panelCarga.setVisible(false);
+    }
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         CProductos objetoProducto = new CProductos();
         objetoProducto.EliminarProducto(txtId);
         objetoProducto.MostrarProductos(tbTotalProductos);
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**

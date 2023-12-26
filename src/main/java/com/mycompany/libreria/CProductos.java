@@ -178,28 +178,5 @@ public class CProductos {
         }
     }
     
-    public void EliminarProducto(JTextField paramCodigo){
-        
-        setCodigo(Integer.parseInt(paramCodigo.getText()));
-        
-        CConexion objetoConexion = new CConexion();
-        
-        String consulta = "DELETE FROM productos WHERE productos.id = ?;";
-        
-        try {
-            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
-            cs.setInt(1, getCodigo());
-            cs.execute();
-            JOptionPane.showMessageDialog(null, "Se Elimino correctamente el producto");
-
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto, error:"+ e.toString());
-
-        }
-        
-        
-        
-         
-    }
+    
 }

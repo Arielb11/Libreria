@@ -14,26 +14,14 @@ import javax.swing.JMenuItem;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Inicio
-     */
-    private JMenuItem mniProductos;
-    
-    private String  logo_productos = "/img/productos.png";
-    
+ 
+
     public Inicio() {
         initComponents();
-        
-        mniProductos = new JMenuItem("Ingresar Productos", getIcono(logo_productos));
-        
-        mbMenu.add(mniProductos);
+
     }
 
-    private Icon getIcono(String ruta){
-        
-        return new ImageIcon(new ImageIcon(getClass().getResource(ruta)).getImage().getScaledInstance(30, 30, 0));
-        
-    }
+    
     
     
     /**
@@ -45,43 +33,76 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanelPrincipal = new javax.swing.JPanel();
         mbMenu = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 153));
+        jPanelPrincipal.setBackground(java.awt.SystemColor.desktop);
+        jPanelPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanelPrincipal.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 739, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
+        jPanelPrincipal.setLayout(jPanelPrincipalLayout);
+        jPanelPrincipalLayout.setHorizontalGroup(
+            jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 723, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+        jPanelPrincipalLayout.setVerticalGroup(
+            jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 616, Short.MAX_VALUE)
         );
 
-        mbMenu.setBackground(new java.awt.Color(0, 0, 102));
+        mbMenu.setBackground(new java.awt.Color(153, 153, 255));
+
+        jMenu1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\11211449_book_library_learning_knowledge_education_icon.png"));
+        jMenu1.setText("Agregar Producto");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        mbMenu.add(jMenu1);
+
+        jMenu2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenu2.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\3298610_box_office_officebox_icon.png"));
+        jMenu2.setText("Gestionar Stock");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        mbMenu.add(jMenu2);
+
         setJMenuBar(mbMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        FormProducto objProducto = new FormProducto();
+        objProducto.setVisible(true);
+        objProducto.esconderLista();
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        FormProducto objProducto = new FormProducto();
+        objProducto.setVisible(true);
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -119,7 +140,9 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JMenuBar mbMenu;
     // End of variables declaration//GEN-END:variables
 }

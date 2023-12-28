@@ -15,6 +15,7 @@ public class FormProducto extends javax.swing.JFrame {
         txtId.setEditable(false);
         CProductos objetoProducto = new CProductos();
         objetoProducto.MostrarProductos(tbTotalProductos);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -34,16 +35,17 @@ public class FormProducto extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtCant = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
+        txtCodBarra = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         panelLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbTotalProductos = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(102, 153, 255));
         setMaximumSize(new java.awt.Dimension(963, 549));
         setMinimumSize(new java.awt.Dimension(963, 549));
@@ -60,16 +62,13 @@ public class FormProducto extends javax.swing.JFrame {
 
         jLabel3.setText("Cantidad");
 
-        btnGuardar.setBackground(new java.awt.Color(0, 255, 51));
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+        btnModificar.setBackground(new java.awt.Color(0, 204, 0));
+        btnModificar.setText("Modificar");
+        btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarMouseClicked(evt);
             }
         });
-
-        btnModificar.setBackground(new java.awt.Color(255, 255, 0));
-        btnModificar.setText("Modificar");
 
         btnEliminar.setBackground(new java.awt.Color(255, 0, 0));
         btnEliminar.setText("Eliminar");
@@ -81,34 +80,35 @@ public class FormProducto extends javax.swing.JFrame {
 
         jLabel4.setText("Precio");
 
+        jLabel5.setText("CodBarra");
+
         javax.swing.GroupLayout panelCargaLayout = new javax.swing.GroupLayout(panelCarga);
         panelCarga.setLayout(panelCargaLayout);
         panelCargaLayout.setHorizontalGroup(
             panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCargaLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(btnModificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCargaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelCargaLayout.createSequentialGroup()
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(btnModificar))
-                    .addGroup(panelCargaLayout.createSequentialGroup()
-                        .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                            .addComponent(txtCant, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCodBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                        .addComponent(txtCant, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(23, 23, 23))
-            .addGroup(panelCargaLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCargaLayout.setVerticalGroup(
             panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,13 +129,15 @@ public class FormProducto extends javax.swing.JFrame {
                 .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnModificar))
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(22, 22, 22)
+                .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnModificar)
+                    .addComponent(btnEliminar))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
         jPanel1.add(panelCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 470));
@@ -143,12 +145,14 @@ public class FormProducto extends javax.swing.JFrame {
         panelLista.setBackground(new java.awt.Color(102, 153, 255));
         panelLista.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Productos"));
 
+        tbTotalProductos = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
         tbTotalProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
@@ -193,33 +197,28 @@ public class FormProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        CProductos objetoProducto = new CProductos();
-        objetoProducto.InsertarProducto(txtNombre, txtCant, txtPrecio);
-        objetoProducto.MostrarProductos(tbTotalProductos);
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        CProductos objetoProducto = new CProductos();
-        objetoProducto.ModificarProducto(txtId, txtNombre, txtCant, txtPrecio);
-        objetoProducto.MostrarProductos(tbTotalProductos);
+        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void tbTotalProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTotalProductosMouseClicked
         CProductos objetoProducto = new CProductos();
-        objetoProducto.SeleccionarProducto(tbTotalProductos, txtId, txtNombre, txtCant, txtPrecio);
+        objetoProducto.SeleccionarProducto(tbTotalProductos, txtId, txtNombre, txtCant, txtPrecio, txtCodBarra);
     }//GEN-LAST:event_tbTotalProductosMouseClicked
-    public void esconderLista (){
-        panelLista.setVisible(false);
-        btnModificar.setVisible(false);
-        btnEliminar.setVisible(false);
-    }
+
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         CProductos objetoProducto = new CProductos();
         objetoProducto.EliminarProducto(txtId);
         objetoProducto.MostrarProductos(tbTotalProductos);
         
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseClicked
+        // TODO add your handling code here:
+        CProductos objetoProducto = new CProductos();
+        objetoProducto.ModificarProducto(txtId, txtNombre, txtCant, txtPrecio, txtCodBarra);
+        objetoProducto.MostrarProductos(tbTotalProductos);
+    }//GEN-LAST:event_btnModificarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -235,18 +234,19 @@ public class FormProducto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelCarga;
     private javax.swing.JPanel panelLista;
     private javax.swing.JTable tbTotalProductos;
     private javax.swing.JTextField txtCant;
+    private javax.swing.JTextField txtCodBarra;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;

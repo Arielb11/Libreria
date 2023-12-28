@@ -17,6 +17,7 @@ public class CProductos {
     String nombreProducto;
     int cant;
     float precio;
+    String codBarra;
     
     public int getCodigo() {
         return codigo;
@@ -49,21 +50,31 @@ public class CProductos {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
+    public String getCodBarra() {
+        return codBarra;
+    }
+
+    public void setCodBarra(String codBarra) {
+        this.codBarra = codBarra;
+    }
     
-    public void InsertarProducto(JTextField paramNombre, JTextField paramCant, JTextField paramPrecio) {
+    public void InsertarProducto(JTextField paramNombre, JTextField paramCant, JTextField paramPrecio, JTextField paramCodBarra) {
         setNombreProducto(paramNombre.getText());
         setCant(Integer.parseInt(paramCant.getText()));
         setPrecio(Float.parseFloat(paramPrecio.getText()));
+        setCodBarra(paramCodBarra.getText());
         
         CConexion objetoConexion = new CConexion();
         
-        String consulta = "INSERT INTO Productos (nombres, cant, precio) VALUES (?,?,?)";
+        String consulta = "INSERT INTO Productos (nombres, cant, precio, codBarra) VALUES (?,?,?,?)";
         
         try {
             CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
             cs.setString(1, getNombreProducto());
             cs.setInt(2, getCant());
             cs.setFloat(3, getPrecio());
+            cs.setString(4, getCodBarra());
+
             
             cs.execute();
             
@@ -88,12 +99,15 @@ public class CProductos {
         modelo.addColumn("Nombre");
         modelo.addColumn("Cantidad");
         modelo.addColumn("Precio");
+        modelo.addColumn("codBarra");
+        
+
         
         paramTablaProductos.setModel(modelo);
         
         sql = "select * from Productos;";
         
-        String[] datos = new String[4];
+        String[] datos = new String[5];
         Statement st;
         
         try {
@@ -105,6 +119,7 @@ public class CProductos {
                 datos[1]=rs.getString(2);
                 datos[2]=rs.getString(3);
                 datos[3]=rs.getString(4);
+                datos[4]=rs.getString(5);
                 
                 modelo.addRow(datos);
             }
@@ -115,7 +130,7 @@ public class CProductos {
         }
     }
     
-    public void SeleccionarProducto (JTable paramTablaProductos, JTextField paramId, JTextField paramNombre, JTextField paramCant, JTextField paramPrecio){
+    public void SeleccionarProducto (JTable paramTablaProductos, JTextField paramId, JTextField paramNombre, JTextField paramCant, JTextField paramPrecio, JTextField paramCodBarra){
         try{
             int fila = paramTablaProductos.getSelectedRow();
             if (fila >=0) {
@@ -123,21 +138,23 @@ public class CProductos {
                 paramNombre.setText((paramTablaProductos.getValueAt(fila, 1).toString()));
                 paramCant.setText((paramTablaProductos.getValueAt(fila, 2).toString()));
                 paramPrecio.setText((paramTablaProductos.getValueAt(fila, 3).toString()));
+                paramCodBarra.setText((paramTablaProductos.getValueAt(fila, 4).toString()));
         }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error de seleccion, error:"+ e.toString());
         }    
     }
     
-    public void ModificarProducto (JTextField paramId, JTextField paramNombre, JTextField paramCant, JTextField paramPrecio) {
+    public void ModificarProducto (JTextField paramId, JTextField paramNombre, JTextField paramCant, JTextField paramPrecio, JTextField paramCodBarra) {
         setCodigo(Integer.parseInt(paramId.getText()));
         setNombreProducto(paramNombre.getText());
         setCant(Integer.parseInt(paramCant.getText()));
-        setPrecio(Float.parseFloat(paramPrecio.getText()));   
+        setPrecio(Float.parseFloat(paramPrecio.getText())); 
+        setCodBarra(paramCodBarra.getText());
         
         CConexion objetoConexion = new CConexion();
         
-        String consulta = "UPDATE productos SET productos.nombres = ?, productos.cant = ?, productos.precio = ? WHERE productos.id = ?;";
+        String consulta = "UPDATE productos SET productos.nombres = ?, productos.cant = ?, productos.precio = ?, productos.codBarra = ? WHERE productos.id = ?;";
         
         try {
             CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
@@ -145,7 +162,9 @@ public class CProductos {
             cs.setString(1, getNombreProducto());
             cs.setInt(2, getCant());
             cs.setFloat(3, getPrecio());
-            cs.setInt(4, getCodigo());
+            cs.setString(4, getCodBarra());
+            cs.setInt(5, getCodigo());
+            
             
             cs.execute();
             

@@ -55,6 +55,11 @@ public class FormProducto extends javax.swing.JFrame {
         panelCarga.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de Producto"));
 
         jLabel1.setText("ID");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbTotalProductosMouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("Nombre");
 

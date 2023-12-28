@@ -85,6 +85,11 @@ public class Inicio extends javax.swing.JFrame {
         jMenu3.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\73064_cash_crysigns_base_icon.png"));
         jMenu3.setText("Ventas");
         jMenu3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
         mbMenu.add(jMenu3);
         mbMenu.add(jMenu4);
 
@@ -114,6 +119,11 @@ public class Inicio extends javax.swing.JFrame {
         FormProducto objProducto = new FormProducto();
         objProducto.setVisible(true);
     }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        FormVentas objVentas = new FormVentas();
+        objVentas.setVisible(true);
+    }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
      * @param args the command line arguments

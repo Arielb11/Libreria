@@ -178,5 +178,24 @@ public class CProductos {
         }
     }
     
-    
+    public CProductos listarID(int id){
+        CProductos p = new CProductos();
+        CConexion objetoConexion = new CConexion();
+        
+        String consulta = "SELECT * FROM productos WHERE productos.id=?";
+        try {
+            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
+            cs.setInt(1, id);
+            ResultSet rs = cs.executeQuery();
+            while (rs.next()){
+                p.setCodigo(rs.getInt(1));
+                p.setNombreProducto(rs.getString(2));
+                p.setCant(rs.getInt(3));
+                p.setPrecio(rs.getFloat(4));
+            }
+        } catch (Exception e) {
+            
+        }
+        return p;
+    }
 }

@@ -1,9 +1,16 @@
 package com.mycompany.libreria;
 
+import java.awt.List;
 import java.sql.CallableStatement;
 import java.sql.*;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class CVentas {
@@ -103,5 +110,27 @@ public class CVentas {
         }
     }
     
-    
+    public CVentas buscarPorFecha (String fecha){
+        CVentas cv = null;
+        CConexion objetoConexion = new CConexion();
+        PreparedStatement st;
+        ResultSet rs;
+        String sql = "SELECT ventas.id, ventas.fecha, ventas.monto FROM ventas WHERE ventas.fecha = \"2023/12/29\";";
+        
+        try {
+            st = objetoConexion.estableceConeccion().prepareStatement(sql);
+            st.setString(1, fecha);
+            rs = st.executeQuery();
+            
+            if (rs != null && rs.next()){
+                cv = new CVentas();
+                cv.setId(rs.getInt("id"));
+                cv.setFecha(rs.getString("fecha"));
+                cv.setTotal(rs.getFloat("monto"));
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return cv;
+    }
 }

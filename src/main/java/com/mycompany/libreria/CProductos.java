@@ -12,6 +12,8 @@ import javax.swing.table.TableRowSorter;
 
 
 
+
+
 public class CProductos {
     int codigo; //Creo que es el ID
     String nombreProducto;

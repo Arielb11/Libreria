@@ -86,22 +86,22 @@ public class CVentas {
         return r;
     }
     
-    public int GuardarDetalleVentas (CDetallesVenta dv){
+    public boolean ActualizarStock(int cant, int cod){
         CConexion objetoConexion = new CConexion();
-        String sql = "INSERT INTO detalle_venta(id_producto, cant_producto, subtotal, id_venta) VALUES (?,?,?,?)";
+        String sql = "UPDATE productos SET cant = ? WHERE id = ?";
         
         try {
-            cs = objetoConexion.estableceConeccion().prepareCall(sql);
-            cs.setInt(1, dv.getId_producto());
-            cs.setInt(2, dv.getCant_producto());
-            cs.setFloat(3, dv.getSubtotal());
-            cs.setInt(4, dv.getId_venta());
+            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(sql);
             
-            r=cs.executeUpdate();
+            cs.setInt(1,cant);
+            cs.setInt(2, cod);
+            cs.execute();
+            return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo ingresar los detalles de la venta, error: "+ e.toString());
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar el stock, error:"+ e.toString());
+            return false;
         }
-        return r;
     }
+    
     
 }

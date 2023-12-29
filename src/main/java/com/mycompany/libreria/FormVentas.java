@@ -16,15 +16,14 @@ public class FormVentas extends javax.swing.JFrame {
     int cant;
     float tpagar;
     float pre;
+    int item;
     
     public FormVentas() {
         initComponents();
-        Calendar calendar = new GregorianCalendar();
-        txtFecha.setText(""+calendar.get(Calendar.YEAR)+"-"+calendar.get(Calendar.MONTH)+"-"+calendar.get(Calendar.DAY_OF_MONTH));
-        //Areglar fecha (mes)
+        item = 0;
+        this.fecha();
     }
-
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -33,13 +32,6 @@ public class FormVentas extends javax.swing.JFrame {
         lblBuscarProd = new javax.swing.JLabel();
         txtBuscarProd = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        txtNombreProd = new javax.swing.JTextField();
-        txtCantProd = new javax.swing.JTextField();
-        txtPrecioProd = new javax.swing.JTextField();
-        lblNombre = new javax.swing.JLabel();
-        lblStock = new javax.swing.JLabel();
-        lblPrecio = new javax.swing.JLabel();
-        btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaDetalle = new javax.swing.JTable();
         txtCantidad = new javax.swing.JSpinner();
@@ -47,12 +39,10 @@ public class FormVentas extends javax.swing.JFrame {
         btnVenta = new javax.swing.JButton();
         txtFecha = new javax.swing.JTextField();
         lblVenta = new javax.swing.JLabel();
-        txtNroSerie = new javax.swing.JTextField();
-        lblNroSerie = new javax.swing.JLabel();
         txtTotalAPagar = new javax.swing.JTextField();
         lblTotalAPagar = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblBuscarProd.setText("Cod Producto");
 
@@ -60,19 +50,6 @@ public class FormVentas extends javax.swing.JFrame {
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMouseClicked(evt);
-            }
-        });
-
-        lblNombre.setText("Nombre:");
-
-        lblStock.setText("Stock:");
-
-        lblPrecio.setText("Precio:");
-
-        btnAgregar.setText("Agregar");
-        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarMouseClicked(evt);
             }
         });
 
@@ -97,8 +74,6 @@ public class FormVentas extends javax.swing.JFrame {
 
         lblVenta.setText("Venta");
 
-        lblNroSerie.setText("NRO Serie:");
-
         lblTotalAPagar.setText("Total a pagar:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -108,47 +83,26 @@ public class FormVentas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblBuscarProd)
-                            .addComponent(lblNombre)
-                            .addComponent(lblCant))
+                        .addComponent(lblBuscarProd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(247, 247, 247))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtBuscarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblNroSerie)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtNroSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(221, 221, 221))
-                                    .addComponent(btnBuscar)))
+                            .addComponent(lblVenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtBuscarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(74, 74, 74)
+                                        .addComponent(lblCant)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(24, 24, 24)
+                                        .addComponent(btnBuscar))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtNombreProd, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblStock)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtCantProd, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblPrecio)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtPrecioProd, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnAgregar)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(0, 12, Short.MAX_VALUE)))
+                                        .addGap(104, 104, 104)
+                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(261, 261, 261)
@@ -165,41 +119,22 @@ public class FormVentas extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lblVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBuscarProd)
+                    .addComponent(txtBuscarProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(lblCant)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtNroSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBuscarProd)
-                            .addComponent(txtBuscarProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtNombreProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblStock)
-                                .addComponent(txtCantProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblPrecio)
-                                .addComponent(txtPrecioProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnAgregar)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCant, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTotalAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTotalAPagar))
-                        .addGap(8, 8, 8))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblNroSerie)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(txtTotalAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotalAPagar))
+                .addGap(8, 8, 8)
                 .addComponent(btnVenta)
                 .addGap(22, 22, 22))
         );
@@ -211,7 +146,7 @@ public class FormVentas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,27 +161,44 @@ public class FormVentas extends javax.swing.JFrame {
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         buscarProducto();
-    }//GEN-LAST:event_btnBuscarMouseClicked
-
-    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
-        agregarProducto();
         calcularTotal();
-    }//GEN-LAST:event_btnAgregarMouseClicked
+    }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void btnVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentaMouseClicked
         guardarVenta();
         guardarDetalle();
+        actualizarStock();
+        limpiarTabla();
     }//GEN-LAST:event_btnVentaMouseClicked
+    
+    public void fecha() {
+        Calendar calendar = new GregorianCalendar();
+        int año, mes, dia;
+        año = calendar.get(Calendar.YEAR);
+        mes = calendar.get(Calendar.MONTH) + 1;
+        dia = calendar.get(Calendar.DATE);
+        if (mes < 10) {
+            txtFecha.setText(año + "/0" + mes + "/" + dia);
+        }
+        if (dia < 10) {
+            txtFecha.setText(año + "/" + mes + "/0" + dia);
+        }
+        if (dia > 10 && mes > 10) {
+            txtFecha.setText(año + "/" + mes + "/" + dia);
+        } else if (dia < 10 && mes < 10) {
+            txtFecha.setText(año + "/0" + mes + "/0" + dia);
+        }
+    }
+    
     public void guardarVenta(){
-        String serie = txtNroSerie.getText();
         String fecha = txtFecha.getText();
         float monto = tpagar;
         
         v.setFecha(fecha);
-        v.setNumeroSerie(serie);
         v.setTotal(monto);
         v.GuardarVentas(v);
     }
+    
     public void guardarDetalle(){
         int idv = v.IdVentas();
         for (int i=0;i < tablaDetalle.getRowCount();i++){
@@ -261,15 +213,15 @@ public class FormVentas extends javax.swing.JFrame {
             dv.GuardarDetalleVentas(dv);
         }
     }
-    public void agregarProducto(){
-        int item = 0; //Si se inicializa aca siempre cada vez que se agrega un producto vuelve a 0
+    
+    public void agregarProducto(CProductos prod){
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = (DefaultTableModel)tablaDetalle.getModel();
         item = item+1;
-        idp = p.getCodigo();
-        String nomp = txtNombreProd.getText();
-        float pre = Float.parseFloat(txtPrecioProd.getText());
-        int stock = Integer.parseInt(txtCantProd.getText());
+        idp = prod.getCodigo();
+        String nomp = prod.getNombreProducto();
+        float pre = prod.getPrecio();
+        int stock = prod.getCant();
         int cant = Integer.parseInt(txtCantidad.getValue().toString()); //Es la cantidad que se elige para la venta
         float total = cant*pre;
         ArrayList lista = new ArrayList();
@@ -303,26 +255,44 @@ public class FormVentas extends javax.swing.JFrame {
         }
         txtTotalAPagar.setText(""+tpagar+"0");
     }
+    
     public void buscarProducto(){
-        int id = Integer.parseInt(txtBuscarProd.getText());
+        String cb = txtBuscarProd.getText();
         if(txtBuscarProd.getText().equals("")){
              JOptionPane.showMessageDialog(null, "Debe ingresar el codigo del producto");
         } else {
             CProductos objProd = new CProductos();
-            p = objProd.listarID(id);
+            p = objProd.buscarCodBarra(cb);
             if (p.getCodigo()!=0){
-                txtNombreProd.setText(p.getNombreProducto());
-                txtCantProd.setText(""+p.getCant());
-                txtPrecioProd.setText(""+p.getPrecio());
+                agregarProducto(p);
             } else {
                 JOptionPane.showMessageDialog(null, "Producto no registrado");
                 txtBuscarProd.requestFocus(); //Para que el mouse vaya directo al txt
             }
         }
     }
+    
+    public void actualizarStock(){
+        for (int i = 0; i < tablaDetalle.getRowCount(); i++) {
+            int cod = Integer.parseInt(tablaDetalle.getValueAt(i, 1).toString());
+            int cant = Integer.parseInt(tablaDetalle.getValueAt(i, 3).toString());
+            p = p.listarID(cod);
+            int StockActual = p.getCant() - cant;
+            v.ActualizarStock(StockActual, cod);
+        }
+    }
+    
+    public void limpiarTabla(){
+        DefaultTableModel tmp = new DefaultTableModel();
+        tmp = (DefaultTableModel) tablaDetalle.getModel();
+        int fila = tablaDetalle.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            tmp.removeRow(i);
+        }
+        
+    }
 
     public static void main(String args[]) {
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormVentas().setVisible(true);
@@ -331,27 +301,18 @@ public class FormVentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnVenta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBuscarProd;
     private javax.swing.JLabel lblCant;
-    private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblNroSerie;
-    private javax.swing.JLabel lblPrecio;
-    private javax.swing.JLabel lblStock;
     private javax.swing.JLabel lblTotalAPagar;
     private javax.swing.JLabel lblVenta;
     private javax.swing.JTable tablaDetalle;
     private javax.swing.JTextField txtBuscarProd;
-    private javax.swing.JTextField txtCantProd;
     private javax.swing.JSpinner txtCantidad;
     private javax.swing.JTextField txtFecha;
-    private javax.swing.JTextField txtNombreProd;
-    private javax.swing.JTextField txtNroSerie;
-    private javax.swing.JTextField txtPrecioProd;
     private javax.swing.JTextField txtTotalAPagar;
     // End of variables declaration//GEN-END:variables
 }

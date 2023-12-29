@@ -188,9 +188,7 @@ public class CProductos {
             CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
             cs.setInt(1, getCodigo());
             cs.execute();
-            JOptionPane.showMessageDialog(null, "Se Elimino correctamente el producto");
-
-            
+            JOptionPane.showMessageDialog(null, "Se Elimino correctamente el producto"); 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto, error:"+ e.toString());
 
@@ -214,6 +212,33 @@ public class CProductos {
             }
         } catch (Exception e) {
             
+        }
+        return p;
+    }
+    
+    public CProductos buscarCodBarra(String cb){
+        CProductos p = new CProductos();
+        CConexion objetoConexion = new CConexion();
+        
+        String consulta = "SELECT * FROM productos WHERE productos.codBarra=?";
+        try {
+            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
+            cs.setString(1, cb);
+            cs.execute();
+            
+            ResultSet rs = cs.executeQuery();
+            
+            if (rs.next()){
+                p.setCodigo(rs.getInt("id"));
+                p.setNombreProducto(rs.getString("nombres"));
+                p.setCant(rs.getInt("cant"));
+                p.setPrecio(rs.getFloat("precio"));
+                p.setCodBarra(rs.getString("codBarra"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Producto no encontrado");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo encontrar el producto, error:"+ e.toString());
         }
         return p;
     }

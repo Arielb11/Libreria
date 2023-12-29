@@ -80,7 +80,12 @@ public class CVentas {
             cs.setFloat(3, v.getTotal());
             
             r=cs.executeUpdate();
+            
+            
+            JOptionPane.showMessageDialog(null, "Se guardo correctamente la venta");
         } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "No se pudo guardar la venta error:"+ e.toString());
  
         }
         return r;

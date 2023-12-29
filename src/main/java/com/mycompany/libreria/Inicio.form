@@ -17,7 +17,7 @@
               </Border>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(System.getProperty (&quot;user.dir&quot;) + &quot;\\src\\main\\java\\img\\11211449_book_library_learning_knowledge_education_icon.png&quot;)" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(System.getProperty (&quot;user.dir&quot;) + &quot;\\src\\main\\java\\img\\IconAgregar.png&quot;)" type="code"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar Producto"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -36,7 +36,7 @@
               </Border>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(System.getProperty (&quot;user.dir&quot;) + &quot;\\src\\main\\java\\img\\3298610_box_office_officebox_icon.png&quot;)" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(System.getProperty (&quot;user.dir&quot;) + &quot;\\src\\main\\java\\img\\IconGestion.jpeg&quot;)" type="code"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Gestionar Stock"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -55,7 +55,7 @@
               </Border>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(System.getProperty (&quot;user.dir&quot;) + &quot;\\src\\main\\java\\img\\73064_cash_crysigns_base_icon.png&quot;)" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(System.getProperty (&quot;user.dir&quot;) + &quot;\\src\\main\\java\\img\\IconVentas.png&quot;)" type="code"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ventas"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -74,7 +74,7 @@
               </Border>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(System.getProperty (&quot;user.dir&quot;) + &quot;\\src\\main\\java\\img\\iconRegistro.png&quot;)" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(System.getProperty (&quot;user.dir&quot;) + &quot;\\src\\main\\java\\img\\iconRegistroVenta.png&quot;)" type="code"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Registro De Ventas"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

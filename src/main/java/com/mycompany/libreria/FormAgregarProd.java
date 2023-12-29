@@ -42,9 +42,13 @@ public class FormAgregarProd extends javax.swing.JFrame {
         txtCodBarra = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(293, 315));
+        setMinimumSize(new java.awt.Dimension(293, 315));
 
         panelCarga.setBackground(new java.awt.Color(102, 153, 255));
         panelCarga.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de Producto"));
+        panelCarga.setMaximumSize(new java.awt.Dimension(293, 315));
+        panelCarga.setMinimumSize(new java.awt.Dimension(293, 315));
 
         jLabel1.setText("ID");
 
@@ -119,10 +123,9 @@ public class FormAgregarProd extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelCarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(panelCarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

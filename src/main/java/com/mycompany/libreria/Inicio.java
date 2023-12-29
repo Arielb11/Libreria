@@ -67,7 +67,7 @@ public class Inicio extends javax.swing.JFrame {
         mbMenu.setBackground(new java.awt.Color(153, 153, 255));
 
         jMenu1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\11211449_book_library_learning_knowledge_education_icon.png"));
+        jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\IconAgregar.png"));
         jMenu1.setText("Agregar Producto");
         jMenu1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -78,7 +78,7 @@ public class Inicio extends javax.swing.JFrame {
         mbMenu.add(jMenu1);
 
         jMenu2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu2.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\3298610_box_office_officebox_icon.png"));
+        jMenu2.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\IconGestion.jpeg"));
         jMenu2.setText("Gestionar Stock");
         jMenu2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,13 +89,18 @@ public class Inicio extends javax.swing.JFrame {
         mbMenu.add(jMenu2);
 
         jMenu3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu3.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\73064_cash_crysigns_base_icon.png"));
+        jMenu3.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\IconVentas.png"));
         jMenu3.setText("Ventas");
         jMenu3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
         mbMenu.add(jMenu3);
 
         jMenu4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu4.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\iconRegistro.png"));
+        jMenu4.setIcon(new javax.swing.ImageIcon(System.getProperty ("user.dir") + "\\src\\main\\java\\img\\iconRegistroVenta.png"));
         jMenu4.setText("Registro De Ventas");
         jMenu4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -143,9 +148,14 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-        FormRegistroV objProducto = new FormRegistroV();
-        objProducto.setVisible(true);
+
     }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here
+        FormVentas objProducto = new FormVentas();
+        objProducto.setVisible(true);
+    }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
      * @param args the command line arguments

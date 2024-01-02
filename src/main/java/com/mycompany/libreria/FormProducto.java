@@ -16,6 +16,12 @@ public class FormProducto extends javax.swing.JFrame {
         CProductos objetoProducto = new CProductos();
         objetoProducto.MostrarProductos(tbTotalProductos);
         this.setLocationRelativeTo(null);
+                
+        tbTotalProductos.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tbTotalProductos.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tbTotalProductos.getColumnModel().getColumn(2).setPreferredWidth(30);
+        tbTotalProductos.getColumnModel().getColumn(3).setPreferredWidth(30);
+        tbTotalProductos.getColumnModel().getColumn(4).setPreferredWidth(100);
     }
 
     /**

@@ -4,6 +4,8 @@
  */
 package com.mycompany.libreria;
 
+import java.awt.*;
+
 /**
  *
  * @author kanku
@@ -15,7 +17,6 @@ public class FormAgregarProd extends javax.swing.JFrame {
      */
     public FormAgregarProd() {
         initComponents();
-        txtId.setEditable(false);
         this.setLocationRelativeTo(null);
     }
 
@@ -29,10 +30,8 @@ public class FormAgregarProd extends javax.swing.JFrame {
     private void initComponents() {
 
         panelCarga = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtCant = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
@@ -42,15 +41,20 @@ public class FormAgregarProd extends javax.swing.JFrame {
         txtCodBarra = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconImages(null);
 
         panelCarga.setBackground(new java.awt.Color(102, 153, 255));
         panelCarga.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de Producto"));
 
-        jLabel1.setText("ID");
-
         jLabel2.setText("Nombre");
 
         jLabel3.setText("Cantidad");
+
+        txtCant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setBackground(new java.awt.Color(0, 255, 51));
         btnGuardar.setText("Guardar");
@@ -62,39 +66,33 @@ public class FormAgregarProd extends javax.swing.JFrame {
 
         jLabel4.setText("Precio");
 
-        jLabel5.setText("CodBarra");
+        jLabel5.setText("Codigo de barra");
 
         javax.swing.GroupLayout panelCargaLayout = new javax.swing.GroupLayout(panelCarga);
         panelCarga.setLayout(panelCargaLayout);
         panelCargaLayout.setHorizontalGroup(
             panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCargaLayout.createSequentialGroup()
+            .addGroup(panelCargaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCant, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCodBarra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(78, 78, 78))
+                    .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                        .addComponent(txtCant)
+                        .addComponent(txtPrecio)
+                        .addComponent(txtCodBarra)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         panelCargaLayout.setVerticalGroup(
             panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCargaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -102,7 +100,7 @@ public class FormAgregarProd extends javax.swing.JFrame {
                 .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -110,9 +108,9 @@ public class FormAgregarProd extends javax.swing.JFrame {
                 .addGroup(panelCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtCodBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
                 .addComponent(btnGuardar)
-                .addGap(32, 32, 32))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,8 +133,12 @@ public class FormAgregarProd extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         CProductos objetoProducto = new CProductos();
         objetoProducto.InsertarProducto(txtNombre, txtCant, txtPrecio, txtCodBarra);
-       // objetoProducto.MostrarProductos(tbTotalProductos);
+        this.dispose();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,7 +177,6 @@ public class FormAgregarProd extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -183,7 +184,6 @@ public class FormAgregarProd extends javax.swing.JFrame {
     private javax.swing.JPanel panelCarga;
     private javax.swing.JTextField txtCant;
     private javax.swing.JTextField txtCodBarra;
-    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables

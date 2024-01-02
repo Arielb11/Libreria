@@ -82,9 +82,9 @@ public class CProductos {
             
             cs.execute();
             
-            JOptionPane.showMessageDialog(null, "Se inserto correctamente el producto");
+            JOptionPane.showMessageDialog(null, "Se inserto correctamente el producto","", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo ingresar el producto, error: "+ e.toString());
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar el producto, error: "+ e.toString(),"",JOptionPane.ERROR_MESSAGE);
         } finally {
             objetoConexion.CloseConnections(cs);
             objetoConexion.getInstancia().releaseConn();
@@ -107,8 +107,6 @@ public class CProductos {
         modelo.addColumn("Cantidad");
         modelo.addColumn("Precio");
         modelo.addColumn("codBarra");
-        
-
         
         paramTablaProductos.setModel(modelo);
         

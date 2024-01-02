@@ -23,7 +23,8 @@ public class FormVentas extends javax.swing.JFrame {
         item = 0;
         this.fecha();
         this.setLocationRelativeTo(null);
-
+        txtFecha.setEditable(false);
+        txtBuscarProd.requestFocus();
     }
     
     @SuppressWarnings("unchecked")
@@ -48,6 +49,7 @@ public class FormVentas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ventas");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
@@ -64,11 +66,11 @@ public class FormVentas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaDetalle);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 118, 1261, 342));
-        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 10, 87, -1));
+        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 10, 87, -1));
 
         jPanel2.setBackground(new java.awt.Color(102, 153, 255));
 
-        lblTotalAPagar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblTotalAPagar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         lblTotalAPagar.setText("Total a pagar:");
 
         btnVenta.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -98,7 +100,7 @@ public class FormVentas extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(373, Short.MAX_VALUE)
+                .addContainerGap(368, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTotalAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTotalAPagar))
@@ -165,11 +167,11 @@ public class FormVentas extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 1290, 50));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1290, 50));
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel1.setText("Fecha");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 10, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -4, 1310, 560));
 
@@ -237,7 +239,7 @@ public class FormVentas extends javax.swing.JFrame {
         }
     }
     
-    public void agregarProducto(CProductos prod){
+    public void agregarProducto(CProductos prod, int cantidad){
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = (DefaultTableModel)tablaDetalle.getModel();
         item = item+1;
@@ -245,7 +247,7 @@ public class FormVentas extends javax.swing.JFrame {
         String nomp = prod.getNombreProducto();
         float pre = prod.getPrecio();
         int stock = prod.getCant();
-        int cant = Integer.parseInt(txtCantidad.getValue().toString()); //Es la cantidad que se elige para la venta
+        int cant = cantidad;
         float total = cant*pre;
         ArrayList lista = new ArrayList();
         if (stock>0){
@@ -281,13 +283,14 @@ public class FormVentas extends javax.swing.JFrame {
     
     public void buscarProducto(){
         String cb = txtBuscarProd.getText();
+        int cant = Integer.parseInt(txtCantidad.getValue().toString());
         if(txtBuscarProd.getText().equals("")){
              JOptionPane.showMessageDialog(null, "Debe ingresar el codigo del producto");
         } else {
             CProductos objProd = new CProductos();
             p = objProd.buscarCodBarra(cb);
             if (p.getCodigo()!=0){
-                agregarProducto(p);
+                agregarProducto(p, cant);
             } else {
                 JOptionPane.showMessageDialog(null, "Producto no registrado");
                 txtBuscarProd.requestFocus(); //Para que el mouse vaya directo al txt

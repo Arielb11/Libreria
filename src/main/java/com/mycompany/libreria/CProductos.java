@@ -22,6 +22,7 @@ public class CProductos {
     CallableStatement cs;
     ResultSet rs;
     Statement st;
+    CProductos cp;
     
     public int getCodigo() {
         return codigo;
@@ -106,9 +107,15 @@ public class CProductos {
         modelo.addColumn("Nombre");
         modelo.addColumn("Cantidad");
         modelo.addColumn("Precio");
-        modelo.addColumn("codBarra");
+        modelo.addColumn("Codigo de barra");
         
         paramTablaProductos.setModel(modelo);
+        
+        paramTablaProductos.getColumnModel().getColumn(0).setPreferredWidth(10);
+        paramTablaProductos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        paramTablaProductos.getColumnModel().getColumn(2).setPreferredWidth(30);
+        paramTablaProductos.getColumnModel().getColumn(3).setPreferredWidth(30);
+        paramTablaProductos.getColumnModel().getColumn(4).setPreferredWidth(100);
         
         sql = "select * from Productos;";
         
@@ -150,6 +157,23 @@ public class CProductos {
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error de seleccion, error:"+ e.toString());
         }    
+    }
+    
+    public CProductos EnviarProducto(JTable paramTablaProductos){
+        try {
+            int fila = paramTablaProductos.getSelectedRow();
+            cp = new CProductos();
+            if (fila >=0) {
+                cp.setCodigo(Integer.parseInt(paramTablaProductos.getValueAt(fila, 0).toString()));
+                cp.setNombreProducto((paramTablaProductos.getValueAt(fila, 1).toString()));
+                cp.setCant(Integer.parseInt(paramTablaProductos.getValueAt(fila, 2).toString()));
+                cp.setPrecio(Float.parseFloat((paramTablaProductos.getValueAt(fila, 3).toString())));
+                cp.setCodBarra((paramTablaProductos.getValueAt(fila, 4).toString()));
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error de seleccion, error:"+ e.toString());
+        }   
+        return cp;
     }
     
     public void ModificarProducto (JTextField paramId, JTextField paramNombre, JTextField paramCant, JTextField paramPrecio, JTextField paramCodBarra) {
@@ -198,7 +222,7 @@ public class CProductos {
             cs = objetoConexion.getInstancia().estableceConeccion().prepareCall(consulta);
             cs.setInt(1, getCodigo());
             cs.execute();
-            JOptionPane.showMessageDialog(null, "Se Elimino correctamente el producto"); 
+            JOptionPane.showMessageDialog(null, "Se elimino correctamente el producto"); 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto, error:"+ e.toString());
         } finally {

@@ -41,7 +41,6 @@ public class Inicio extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1920, 1080));
@@ -111,14 +110,6 @@ public class Inicio extends javax.swing.JFrame {
         });
         mbMenu.add(jMenu4);
 
-        jMenu5.setText("jMenu5");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
-            }
-        });
-        mbMenu.add(jMenu5);
-
         setJMenuBar(mbMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,11 +157,6 @@ public class Inicio extends javax.swing.JFrame {
         objVentas.setVisible(true);
     }//GEN-LAST:event_jMenu3MouseClicked
 
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        FormBuscarVenta objBuscarVenta = new FormBuscarVenta();
-        objBuscarVenta.setVisible(true);
-    }//GEN-LAST:event_jMenu5MouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -212,7 +198,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JMenuBar mbMenu;
     // End of variables declaration//GEN-END:variables

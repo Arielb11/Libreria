@@ -19,6 +19,10 @@ public class CProductos {
     float precio;
     String codBarra;
     
+    CallableStatement cs;
+    ResultSet rs;
+    Statement st;
+    
     public int getCodigo() {
         return codigo;
     }
@@ -69,7 +73,7 @@ public class CProductos {
         String consulta = "INSERT INTO Productos (nombres, cant, precio, codBarra) VALUES (?,?,?,?)";
         
         try {
-            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
+            cs = objetoConexion.getInstancia().estableceConeccion().prepareCall(consulta);
             cs.setString(1, getNombreProducto());
             cs.setInt(2, getCant());
             cs.setFloat(3, getPrecio());
@@ -81,6 +85,9 @@ public class CProductos {
             JOptionPane.showMessageDialog(null, "Se inserto correctamente el producto");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo ingresar el producto, error: "+ e.toString());
+        } finally {
+            objetoConexion.CloseConnections(cs);
+            objetoConexion.getInstancia().releaseConn();
         }
     }
     
@@ -108,11 +115,10 @@ public class CProductos {
         sql = "select * from Productos;";
         
         String[] datos = new String[5];
-        Statement st;
         
         try {
-            st = objetoConexion.estableceConeccion().createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            st = objetoConexion.getInstancia().estableceConeccion().createStatement();
+            rs = st.executeQuery(sql);
             
             while (rs.next()){
                 datos[0]=rs.getString(1);
@@ -127,6 +133,9 @@ public class CProductos {
             
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar, error: "+ e.toString());
+        } finally {
+            objetoConexion.CloseConnections(rs, st);
+            objetoConexion.getInstancia().releaseConn();
         }
     }
     
@@ -157,7 +166,7 @@ public class CProductos {
         String consulta = "UPDATE productos SET productos.nombres = ?, productos.cant = ?, productos.precio = ?, productos.codBarra = ? WHERE productos.id = ?;";
         
         try {
-            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
+            cs = objetoConexion.getInstancia().estableceConeccion().prepareCall(consulta);
             
             cs.setString(1, getNombreProducto());
             cs.setInt(2, getCant());
@@ -173,6 +182,9 @@ public class CProductos {
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "No se pudo actualizar el producto error:"+ e.toString());
+        } finally {
+            objetoConexion.CloseConnections(rs, cs);
+            objetoConexion.getInstancia().releaseConn();
         }
     }
     
@@ -185,13 +197,15 @@ public class CProductos {
         String consulta = "DELETE FROM productos WHERE productos.id = ?;";
         
         try {
-            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
+            cs = objetoConexion.getInstancia().estableceConeccion().prepareCall(consulta);
             cs.setInt(1, getCodigo());
             cs.execute();
             JOptionPane.showMessageDialog(null, "Se Elimino correctamente el producto"); 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto, error:"+ e.toString());
-
+        } finally {
+            objetoConexion.CloseConnections(cs);
+            objetoConexion.getInstancia().releaseConn();
         }
     }
     
@@ -201,7 +215,7 @@ public class CProductos {
         
         String consulta = "SELECT * FROM productos WHERE productos.id=?";
         try {
-            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
+            cs = objetoConexion.getInstancia().estableceConeccion().prepareCall(consulta);
             cs.setInt(1, id);
             ResultSet rs = cs.executeQuery();
             while (rs.next()){
@@ -211,8 +225,12 @@ public class CProductos {
                 p.setPrecio(rs.getFloat(4));
             }
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(null, "No se pudo encontrar listar el ID, error:"+ e.toString());
+        } finally {
+            objetoConexion.CloseConnections(rs, cs);
+            objetoConexion.getInstancia().releaseConn();
         }
+        
         return p;
     }
     
@@ -222,11 +240,11 @@ public class CProductos {
         
         String consulta = "SELECT * FROM productos WHERE productos.codBarra=?";
         try {
-            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(consulta);
+            cs = objetoConexion.getInstancia().estableceConeccion().prepareCall(consulta);
             cs.setString(1, cb);
             cs.execute();
             
-            ResultSet rs = cs.executeQuery();
+            rs = cs.executeQuery();
             
             if (rs.next()){
                 p.setCodigo(rs.getInt("id"));
@@ -239,7 +257,10 @@ public class CProductos {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo encontrar el producto, error:"+ e.toString());
-        }
+        } finally{
+            objetoConexion.CloseConnections(rs, cs);
+            objetoConexion.getInstancia().releaseConn();
+        } 
         return p;
     }
 }

@@ -1,9 +1,14 @@
 package com.mycompany.libreria;
 
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class CDetallesVenta {
@@ -14,6 +19,8 @@ public class CDetallesVenta {
     int id_venta;
 
     CallableStatement cs;
+    PreparedStatement st;
+    ResultSet rs;
     int r = 0;
     
     public int getId() {
@@ -60,7 +67,7 @@ public class CDetallesVenta {
         String sql = "INSERT INTO detalle_venta (id_producto, cant_producto, subtotal, id_venta) VALUES (?,?,?,?)";
         
         try {
-            cs = objetoConexion.estableceConeccion().prepareCall(sql);
+            cs = objetoConexion.getInstancia().estableceConeccion().prepareCall(sql);
             cs.setInt(1, dv.getId_producto());
             cs.setInt(2, dv.getCant_producto());
             cs.setFloat(3, dv.getSubtotal());
@@ -69,7 +76,56 @@ public class CDetallesVenta {
             cs.execute();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo ingresar el detalle de la venta, error: "+ e.toString());
+        } finally {
+            objetoConexion.CloseConnections(cs);
+            objetoConexion.getInstancia().releaseConn();
         }
     }
     
+    public void BuscarVenta (JTable paramTablaDetalles, JTextField id){
+        CConexion objetoConexion = new CConexion();
+        st = null;
+        rs = null;
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        TableRowSorter<TableModel> OrdenarTabla = new TableRowSorter<TableModel>(modelo);
+        
+        paramTablaDetalles.setRowSorter(OrdenarTabla);
+        
+        modelo.addColumn("ID Producto");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Subtotal");
+        
+        paramTablaDetalles.setModel(modelo);
+        
+        String sql = "SELECT productos.nombres, detalle_venta.cant_producto, detalle_venta.subtotal FROM detalle_venta "
+                + "INNER JOIN productos ON (productos.id = detalle_venta.id_producto) "
+                + "WHERE detalle_venta.id_venta = ?";
+        
+        String[] datos = new String[3];
+        
+        try {
+            st = objetoConexion.getInstancia().estableceConeccion().prepareStatement(sql);
+            st.setInt(1, Integer.parseInt(id.getText()));
+            rs = st.executeQuery();
+            
+            if (rs != null){
+                while (rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                
+                modelo.addRow(datos);
+                }
+                paramTablaDetalles.setModel(modelo);
+            }
+            
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            objetoConexion.CloseConnections(rs, st);
+            objetoConexion.getInstancia().releaseConn();
+        }
+    }
 }

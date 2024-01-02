@@ -5,6 +5,7 @@ import java.sql.CallableStatement;
 import java.sql.*;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -71,6 +72,9 @@ public class CVentas {
             }
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "No se puede mostrar el maximo ID, error: "+ e.toString());
+        } finally {
+            objetoConexion.CloseConnections(rs, cs);
+            objetoConexion.getInstancia().releaseConn();
         }
         return id;
     }
@@ -81,14 +85,17 @@ public class CVentas {
         String sql = "INSERT INTO Ventas (fecha, numeroSerie, monto) VALUES (?,?,?)";
         
         try {
-            cs = objetoConexion.estableceConeccion().prepareCall(sql);
+            cs = objetoConexion.getInstancia().estableceConeccion().prepareCall(sql);
             cs.setString(1, v.getFecha());
             cs.setString(2, v.getNumeroSerie());
             cs.setFloat(3, v.getTotal());
             
             r=cs.executeUpdate();
         } catch (Exception e) {
- 
+            JOptionPane.showMessageDialog(null, "No se pudo guardar la venta, error:"+ e.toString());
+        } finally {
+            objetoConexion.CloseConnections(cs);
+            objetoConexion.getInstancia().releaseConn();
         }
         return r;
     }
@@ -98,7 +105,7 @@ public class CVentas {
         String sql = "UPDATE productos SET cant = ? WHERE id = ?";
         
         try {
-            CallableStatement cs = objetoConexion.estableceConeccion().prepareCall(sql);
+            CallableStatement cs = objetoConexion.getInstancia().estableceConeccion().prepareCall(sql);
             
             cs.setInt(1,cant);
             cs.setInt(2, cod);
@@ -107,30 +114,55 @@ public class CVentas {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo actualizar el stock, error:"+ e.toString());
             return false;
+        } finally {
+            objetoConexion.CloseConnections(cs);
+            objetoConexion.getInstancia().releaseConn();
         }
+
     }
     
-    public CVentas buscarPorFecha (String fecha){
-        CVentas cv = null;
+    public void MostrarVentas (JTable paramTablaVentas, JTextField fecha){
         CConexion objetoConexion = new CConexion();
-        PreparedStatement st;
-        ResultSet rs;
-        String sql = "SELECT ventas.id, ventas.fecha, ventas.monto FROM ventas WHERE ventas.fecha = \"2023/12/29\";";
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        TableRowSorter<TableModel> OrdenarTabla = new TableRowSorter<TableModel>(modelo);
+        
+        paramTablaVentas.setRowSorter(OrdenarTabla);
+        
+        modelo.addColumn("ID");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Monto");
+        
+        paramTablaVentas.setModel(modelo);
+        
+        String sql = "SELECT ventas.id, ventas.fecha, ventas.monto FROM ventas WHERE ventas.fecha LIKE ?";
+
+        String[] datos = new String[3];
         
         try {
-            st = objetoConexion.estableceConeccion().prepareStatement(sql);
-            st.setString(1, fecha);
+            st = objetoConexion.getInstancia().estableceConeccion().prepareStatement(sql);
+            st.setString(1, fecha.getText()+"%");
             rs = st.executeQuery();
             
-            if (rs != null && rs.next()){
-                cv = new CVentas();
-                cv.setId(rs.getInt("id"));
-                cv.setFecha(rs.getString("fecha"));
-                cv.setTotal(rs.getFloat("monto"));
+            if (rs != null){
+                while (rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                
+                modelo.addRow(datos);
+                }
+                paramTablaVentas.setModel(modelo);
             }
-        } catch(Exception e){
+        } catch (Exception e){
             e.printStackTrace();
+        } finally {
+            objetoConexion.CloseConnections(rs, st);
+            objetoConexion.getInstancia().releaseConn();
         }
-        return cv;
     }
+ 
 }

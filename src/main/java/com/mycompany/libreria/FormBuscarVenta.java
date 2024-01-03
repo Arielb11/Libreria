@@ -43,8 +43,10 @@ public class FormBuscarVenta extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 153, 255));
 
+        lblID.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lblID.setText("ID Venta:");
 
+        btnBuscar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -63,7 +65,7 @@ public class FormBuscarVenta extends javax.swing.JFrame {
                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
                 .addComponent(btnBuscar)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,6 +80,7 @@ public class FormBuscarVenta extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 153, 255));
 
+        tablaDetalleVenta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tablaDetalleVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

@@ -4,6 +4,10 @@
  */
 package com.mycompany.libreria;
 
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.*;
+
 /**
  *
  * @author kanku
@@ -16,6 +20,9 @@ public class FormBusqNombre extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         objetoProducto.MostrarProductos(tbTotalProductos);
+        txtID.setEditable(false);
+        txtNombreProd.setEditable(false);
+        txtPrecio.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -26,6 +33,13 @@ public class FormBusqNombre extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbTotalProductos = new javax.swing.JTable();
+        txtID = new javax.swing.JTextField();
+        lblID = new javax.swing.JLabel();
+        lblNombreProd = new javax.swing.JLabel();
+        txtNombreProd = new javax.swing.JTextField();
+        lblPrecio = new javax.swing.JLabel();
+        txtPrecio = new javax.swing.JTextField();
+        btnAgregar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -55,21 +69,58 @@ public class FormBusqNombre extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbTotalProductos);
 
+        lblID.setText("ID:");
+
+        lblNombreProd.setText("Nombre:");
+
+        lblPrecio.setText("Precio:");
+
+        btnAgregar.setText("Agregar producto");
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lblID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNombreProd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreProd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPrecio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106)
+                        .addComponent(btnAgregar)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblID)
+                    .addComponent(lblNombreProd)
+                    .addComponent(txtNombreProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPrecio)
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         lblNombre.setText("Nombre del producto");
@@ -126,7 +177,7 @@ public class FormBusqNombre extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 520));
@@ -135,21 +186,28 @@ public class FormBusqNombre extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        FormVentas fv = new FormVentas();
-        int cant = Integer.parseInt(txtCantidad.getValue().toString());
-        fv.agregarProducto(objetoProducto, cant);
-        this.dispose();
+        objetoProducto.MostrarProductosFiltrados(tbTotalProductos, txtNombre);
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void tbTotalProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTotalProductosMouseClicked
-        this.mandarInfo(objetoProducto.EnviarProducto(tbTotalProductos));
+        objetoProducto.SeleccionarProductoParaVenta(tbTotalProductos, txtID, txtNombreProd, txtPrecio);
     }//GEN-LAST:event_tbTotalProductosMouseClicked
 
-    public void mandarInfo(CProductos prod){
-        FormVentas fv = new FormVentas();
+    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+        int id = Integer.parseInt(txtID.getText());
         int cant = Integer.parseInt(txtCantidad.getValue().toString());
-        fv.agregarProducto(prod, cant);
-    }
+        int FilaSeleccionada = tbTotalProductos.getSelectedRow();
+        FormVentas fv = new FormVentas();
+        CProductos objProd = new CProductos();
+        objProd = objetoProducto.buscarPorID(id);
+        //FormVentas.tablaDetalle.addRow(FilaSeleccionada);
+        
+        fv.agregarProducto(objProd, cant);
+        fv.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarMouseClicked
+    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -183,14 +241,21 @@ public class FormBusqNombre extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombreProd;
+    private javax.swing.JLabel lblPrecio;
     private javax.swing.JTable tbTotalProductos;
     private javax.swing.JSpinner txtCantidad;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreProd;
+    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }

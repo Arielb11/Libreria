@@ -42,6 +42,9 @@ public class FormProducto extends javax.swing.JFrame {
         panelLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbTotalProductos = new javax.swing.JTable();
+        txtBuscar = new javax.swing.JTextField();
+        lblBuscar = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de productos");
@@ -169,6 +172,15 @@ public class FormProducto extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbTotalProductos);
 
+        lblBuscar.setText("Nombre del producto:");
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelListaLayout = new javax.swing.GroupLayout(panelLista);
         panelLista.setLayout(panelListaLayout);
         panelListaLayout.setHorizontalGroup(
@@ -177,12 +189,25 @@ public class FormProducto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(panelListaLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(lblBuscar)
+                .addGap(65, 65, 65)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(btnBuscar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelListaLayout.setVerticalGroup(
             panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelListaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBuscar)
+                    .addComponent(btnBuscar))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         jPanel1.add(panelLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 6, 980, 530));
@@ -229,6 +254,11 @@ public class FormProducto extends javax.swing.JFrame {
         this.limpiarCampos();
         objetoProducto.MostrarProductos(tbTotalProductos);
     }//GEN-LAST:event_btnModificarMouseClicked
+
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+        CProductos objetoProducto = new CProductos();
+        objetoProducto.MostrarProductosFiltrados(tbTotalProductos, txtBuscar);
+    }//GEN-LAST:event_btnBuscarMouseClicked
     
     public void limpiarCampos(){
         txtId.setText(null);
@@ -248,6 +278,7 @@ public class FormProducto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
@@ -257,9 +288,11 @@ public class FormProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBuscar;
     private javax.swing.JPanel panelCarga;
     private javax.swing.JPanel panelLista;
     private javax.swing.JTable tbTotalProductos;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCant;
     private javax.swing.JTextField txtCodBarra;
     private javax.swing.JTextField txtId;

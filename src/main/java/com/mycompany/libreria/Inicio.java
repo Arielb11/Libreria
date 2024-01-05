@@ -4,6 +4,8 @@
  */
 package com.mycompany.libreria;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
@@ -19,10 +21,13 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
         this.setLocationRelativeTo(null);
+       // Image img=new ImageIcon(this.getClass().getResource("/logo.png")).getImage();
+       // this.setIconImage(img);
+       // setIconImage(new ImageIcon(getClass().getResource("/img/logo.png")).getImage());
 
     }
-
     
+   
     
     
     /**

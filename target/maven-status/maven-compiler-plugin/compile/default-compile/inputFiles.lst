@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Usuario\Documents\NetBeansProjects\Libreria\src\main\java\com\mycompany\libreria\FormBusqNombre.java
 C:\Users\Usuario\Documents\NetBeansProjects\Libreria\src\main\java\com\mycompany\libreria\FormProducto.java
 C:\Users\Usuario\Documents\NetBeansProjects\Libreria\src\main\java\com\mycompany\libreria\CConexion.java
@@ -11,3 +12,17 @@ C:\Users\Usuario\Documents\NetBeansProjects\Libreria\src\main\java\com\mycompany
 C:\Users\Usuario\Documents\NetBeansProjects\Libreria\src\main\java\com\mycompany\libreria\FormVentas.java
 C:\Users\Usuario\Documents\NetBeansProjects\Libreria\src\main\java\com\mycompany\libreria\Inicio.java
 C:\Users\Usuario\Documents\NetBeansProjects\Libreria\src\main\java\com\mycompany\libreria\CDetallesVenta.java
+=======
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\CVentas.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\CConexion.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\FormBusqNombre.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\Libreria.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\CProductos.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\FormBuscarVenta.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\FormRegistroV.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\Inicio.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\CDetallesVenta.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\FormAgregarProd.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\FormProducto.java
+C:\Users\kanku\OneDrive\Escritorio\Libreria\src\main\java\com\mycompany\libreria\FormVentas.java
+>>>>>>> RamaRombers

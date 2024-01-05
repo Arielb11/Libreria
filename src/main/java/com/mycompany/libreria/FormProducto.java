@@ -58,6 +58,7 @@ public class FormProducto extends javax.swing.JFrame {
         panelCarga.setBackground(new java.awt.Color(102, 153, 255));
         panelCarga.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de Producto"));
 
+        jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel1.setText("ID");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -65,8 +66,10 @@ public class FormProducto extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel2.setText("Nombre");
 
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel3.setText("Cantidad");
 
         btnModificar.setBackground(new java.awt.Color(0, 204, 0));
@@ -85,8 +88,10 @@ public class FormProducto extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel4.setText("Precio");
 
+        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel5.setText("Codigo de barra");
 
         javax.swing.GroupLayout panelCargaLayout = new javax.swing.GroupLayout(panelCarga);
@@ -157,6 +162,7 @@ public class FormProducto extends javax.swing.JFrame {
                 return false;
             }
         };
+        tbTotalProductos.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tbTotalProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
